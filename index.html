@@ -34,7 +34,16 @@
         rotation="0 270 0"
         position="0.5 1.02 -0.7"
         animation-mixer
-      ></a-entity>
+      >
+        <a-animation
+          attribute="rotation"
+          to="360 360 0"
+          repeat="indefinite"
+          dur="10000"
+          easing="linear"
+        >
+        </a-animation>
+      </a-entity>
     </a-scene>
   </body>
 </html>
