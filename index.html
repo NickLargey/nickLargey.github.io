@@ -7,5 +7,20 @@
     <title>NickLargey.github.io VR</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
   </head>
-  <body></body>
+  <body>
+    <a-scene>
+        <a-assets></a-assets>
+            <a-asset-item id="dragon" src="./assets/gragon.scene.gltf"></a-asset-item>
+            <a-asset-item id="city" src="./assets/city/scene.gltf"></a-asset-item>
+        </a-assets>
+
+        <!-- City GLTF model -->
+        <a-entity gltf-model="#city"
+                  rotation="0 -90 0"
+                  scale="0.0005 0.0005 0.0005"
+                  position = "0 0 0">
+        </a-entity>
+    </a-scene>
+
+  </body>
 </html>
