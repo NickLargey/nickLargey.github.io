@@ -16,24 +16,17 @@
           src="./assets/dragon/scene.gltf"
         ></a-asset-item>
         <a-asset-item id="city" src="./assets/city/scene.gltf"></a-asset-item>
+        <a-asset-item id="man" src="./assets/man/manHead.gltf"></a-asset-item>
       </a-assets>
 
       <!-- City GLTF model -->
       <a-entity
-        gltf-model="#city"
-        rotation="0 -90 0"
-        scale="0.0005 0.0005 0.0005"
+        gltf-model="#man"
+        rotation="0 0 0"
+        scale="1 1 1"
         position=".07 1 -0.5"
       >
       </a-entity>
-      <!-- Dragon GLTF Model -->
-      <a-entity
-        gltf-model="#dragon"
-        scale="1 1 1"
-        position="0.5 1.02 -0.7"
-        rotation="0 270 0"
-        animation-mixer
-      ></a-entity>
     </a-scene>
   </body>
 </html>
