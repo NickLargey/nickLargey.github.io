@@ -18,32 +18,24 @@
         <a-asset-item id="city" src="./assets/city/scene.gltf"></a-asset-item>
         <a-asset-item id="man" src="./assets/man/manHead.gltf"></a-asset-item>
       </a-assets>
+      <!--City GLTF model-->
 
-      <!-- City GLTF model
-      <a-entity
-        gltf-model="#man"
-        rotation="0 0 0"
-        scale="1 1 1"
-        position=".07 1 -0.5"
-      >
-      </a-entity> -->
-      <!--Dragon GLTF model-->
-      <a-entity
-        gltf-model="#dragon"
-        scale="1 1 1"
-        rotation="0 270 0"
-        position="0 1.5 -0.7"
-        animation-mixer
-      >
-        <a-animation
-          attribute="position"
-          to="360 360 360"
-          repeat="indefinite"
-          dur="5000"
-          easing="linear"
+      <!-- Man GLTF model -->
+      <a-entity gltf-model="#man" scale=".1 .1 .1" position="0 1.75 -0.7">
+        <!--Dragon GLTF model-->
+        <a-entity
+          rotation="0 0 0"
+          animation="property: rotation; to: 0 -360 0; loop: true; dur: 10000; easing: linear"
         >
-        </a-animation>
-      </a-entity>
+          <a-entity
+            gltf-model="#dragon"
+            scale="5 5 5"
+            position="3 0 0"
+            animation-mixer
+          >
+          </a-entity> </a-entity
+      ></a-entity>
     </a-scene>
   </body>
 </html>
+<!-- rotation="0 0 0" -->
