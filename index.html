@@ -1,12 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-entity
+        geometry="primitive: plane; height: 10; width: 10"
+        rotation="-90 0 0"
+        material="side: double; color:#123"
+      >
+      </a-entity>
+      <a-box
+        id="cubrick"
+        position="0.3 1.5 -0.5"
+        material="src: #brick; roughness: 1;"
+        depth="0.5"
+        height="0.5"
+        width="0.5"
+      ></a-box>
+      <a-sky color="#87CEEB"></a-sky>
+    </a-scene>
+    <script type="text/javascript">
+      const texture = new window.THREE.TextureLoader().load(
+        "textures/brick_mat.jpg"
+      );
+      texture.anisotropy = 16;
+      texture.minFilter = THREE.NearestFilter;
+      texture.maxFilter = THREE.NearestFilter;
+
+      const material_tex = new THREE.MeshBasicMaterial({ map: texture });
+      const box = document.querySelector("#cubrick");
+      const mesh = box.getObject3D("mesh");
+
+      mesh.material = material_tex;
+    </script>
+  </body>
 </html>
