@@ -62,72 +62,137 @@
       <a-entity
         rotation="0 0 0"
         position="0 1.75 -20"
-        animation="property: rotation; to: 60 -360 30; loop: true; dur: 50000; easing: linear"
+        animation="property: rotation; to: 10 -360 0; loop: true; dur: 50000; easing: linear"
       >
         <a-sphere
           id="sun"
           scale="2 2 2"
           texture-loader="src: textures/sun.jpg;"
         >
-          <a-sphere
-            id="murcury"
-            position="3 0 0"
-            scale=".1 .1 .1"
-            texture-loader="src: textures/mercury.jpg;"
+          <a-entity
+            rotation="0 0 0"
+            position="0 0 0"
+            animation="property: rotation; to: 0 -360 0; loop: true; dur: 20000; easing: linear"
           >
-          </a-sphere>
-          <a-sphere
-            id="venus"
-            position="6 0 0"
-            scale=".25 .25 .25"
-            texture-loader="src: textures/venus.jpg;"
-          >
-          </a-sphere>
-          <a-sphere
-            id="earth"
-            position="-10 0 0"
-            scale=".5 .5 .5"
-            texture-loader="src: textures/earth.jpg; normal: true; normal_src: textures/earth_normal.tif;"
-          >
-          </a-sphere>
-          <a-sphere
-            id="mars"
-            position="26 0 0"
-            scale=".35 .35 .35"
-            texture-loader="src: textures/mars.jpg;"
-          >
-          </a-sphere>
-          <a-sphere
-            id="jupiter"
-            position="-40 0 0"
-            scale=".75 .75 .75"
-            texture-loader="src: textures/jupiter.jpg;"
-          >
-          </a-sphere>
+            <a-sphere
+              id="murcury"
+              position="3 0 0"
+              scale=".1 .1 .1"
+              texture-loader="src: textures/mercury.jpg;"
+            ></a-sphere>
+          </a-entity>
 
-          <a-sphere
-            id="saturn"
-            position="50 0 0"
-            scale=".55 .55 .55"
-            texture-loader="src: textures/saturn.jpg;"
+          <a-entity
+            rotation="0 0 0"
+            position="0 0 0"
+            animation="property: rotation; to: 0 -360 0; loop: true; dur: 20000; easing: linear"
           >
-          </a-sphere>
+            <a-sphere
+              id="venus"
+              position="-5 0 0"
+              scale=".25 .25 .25"
+              texture-loader="src: textures/venus.jpg;"
+            >
+            </a-sphere>
+          </a-entity>
 
-          <a-sphere
-            id="uranus"
-            position="-55 0 0"
-            scale=".5 .5 .5"
-            texture-loader="src: textures/uranus.jpg;"
+          <a-entity
+            rotation="0 0 0"
+            position="0 0 0"
+            animation="property: rotation; to: 0 -360 0; loop: true; dur: 30000; easing: linear"
           >
-          </a-sphere>
+            <a-sphere
+              id="earth"
+              position="9 0 0"
+              scale=".5 .5 .5"
+              texture-loader="src: textures/earth.jpg; normal: true; normal_src: textures/earth_normal.tif;"
+            >
+              <a-sphere
+                id="moon"
+                position="2 1 0"
+                scale=".25 .25 .25"
+                texture-loader="src: textures/moon.jpg;"
+              >
+              </a-sphere>
+            </a-sphere>
+          </a-entity>
 
-          <a-sphere
-            id="neptune"
-            position="60 0 0"
-            scale=".45 .45 .45"
-            texture-loader="src: textures/neptune.jpg;"
+          <a-entity
+            rotation="0 0 0"
+            position="0 0 0"
+            animation="property: rotation; to: 0 -360 0; loop: true; dur: 30000; easing: linear"
           >
-          </a-sphere>
+            <a-sphere
+              id="mars"
+              position="15 0 0"
+              scale=".35 .35 .35"
+              texture-loader="src: textures/mars.jpg;"
+            >
+            </a-sphere>
+          </a-entity>
+
+          <a-entity
+            rotation="0 0 0"
+            position="0 0 0"
+            animation="property: rotation; to: 0 -360 0; loop: true; dur: 50000; easing: linear"
+          >
+            <a-sphere
+              id="jupiter"
+              position="-22 0 0"
+              scale=".75 .75 .75"
+              texture-loader="src: textures/jupiter.jpg;"
+            >
+            </a-sphere>
+          </a-entity>
+
+          <a-entity
+            rotation="0 0 0"
+            position="0 0 0"
+            animation="property: rotation; to: 0 -360 0; loop: true; dur: 50000; easing: linear"
+          >
+            <a-sphere
+              id="saturn"
+              position="30 0 0"
+              scale=".55 .55 .55"
+              texture-loader="src: textures/saturn.jpg;"
+            >
+              <a-ring
+                color="030303"
+                radius-inner="2"
+                radius-outer="3"
+                rotation="90 0 0"
+                wireframe="true"
+              ></a-ring>
+            </a-sphere>
+          </a-entity>
+
+          <a-entity
+            rotation="0 0 0"
+            position="0 0 0"
+            animation="property: rotation; to: 0 -360 0; loop: true; dur: 50000; easing: linear"
+          >
+            <a-sphere
+              id="uranus"
+              position="-35 0 0"
+              scale=".5 .5 .5"
+              texture-loader="src: textures/uranus.jpg;"
+            >
+            </a-sphere>
+          </a-entity>
+
+          <a-entity
+            rotation="0 0 0"
+            position="0 0 0"
+            animation="property: rotation; to: 0 -360 0; loop: true; dur:80000; easing: linear"
+          >
+            <a-sphere
+              id="neptune"
+              position="40 0 0"
+              scale=".45 .45 .45"
+              texture-loader="src: textures/neptune.jpg;"
+            >
+            </a-sphere>
+          </a-entity>
         </a-sphere>
       </a-entity>
     </a-scene>
