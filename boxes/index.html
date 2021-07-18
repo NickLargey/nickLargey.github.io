@@ -9,12 +9,27 @@
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
   </head>
   <body>
-    <a-scene background="0x000000">
+    <a-scene background="color: #000000">
       <a-entity
         rotation="0 0 0"
+        position="0 1.75 0"
         animation="property: rotation; to: 0 -360 0; loop: true; dur: 10000; easing: linear"
       >
-        <a-box color="0xffffff"> </a-box>
+        <a-box color="#fefefe">
+          <a-box color="#efefef" position="2 -4 0"> </a-box>
+          <a-box color="#efefef" position="3 -1 0"> </a-box>
+          <a-box color="#efefef" position="-5 -2 0"> </a-box>
+          <a-box color="#efefef" position="-4 -6 0"> </a-box>
+          <a-box color="#efefef" position="0 -2 -3"> </a-box>
+          <a-box color="#efefef" position="0 2 -3"> </a-box>
+
+          <a-box color="#efefef" position="1 4 0"> </a-box>
+          <a-box color="#efefef" position="3 1 0"> </a-box>
+          <a-box color="#efefef" position="-5 2 0"> </a-box>
+          <a-box color="#efefef" position="-4 6 0"> </a-box>
+          <a-box color="#efefef" position="0 2 3"> </a-box>
+          <a-box color="#efefef" position="0 2 -3"> </a-box>
+        </a-box>
       </a-entity>
     </a-scene>
   </body>
