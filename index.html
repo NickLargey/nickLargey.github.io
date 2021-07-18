@@ -61,7 +61,7 @@
       <a-sky src="textures/milky_way.jpg"></a-sky>
       <a-entity
         rotation="0 0 0"
-        position="0 1.75 -20"
+        position="0 1.75 -15"
         animation="property: rotation; to: 10 -360 0; loop: true; dur: 50000; easing: linear"
       >
         <a-sphere
@@ -99,7 +99,7 @@
           <a-entity
             rotation="0 0 0"
             position="0 0 0"
-            animation="property: rotation; to: 0 -360 0; loop: true; dur: 30000; easing: linear"
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear"
           >
             <a-sphere
               id="earth"
@@ -107,13 +107,19 @@
               scale=".5 .5 .5"
               texture-loader="src: textures/earth.jpg; normal: true; normal_src: textures/earth_normal.tif;"
             >
-              <a-sphere
-                id="moon"
-                position="2 1 0"
-                scale=".25 .25 .25"
-                texture-loader="src: textures/moon.jpg;"
+              <a-entity
+                rotation="0 0 0"
+                position="0 0 0"
+                animation="property: rotation; to: 0 360 0; loop: true; dur: 10000; easing: linear"
               >
-              </a-sphere>
+                <a-sphere
+                  id="moon"
+                  position="2 1 0"
+                  scale=".25 .25 .25"
+                  texture-loader="src: textures/moon.jpg;"
+                >
+                </a-sphere>
+              </a-entity>
             </a-sphere>
           </a-entity>
 
@@ -134,7 +140,7 @@
           <a-entity
             rotation="0 0 0"
             position="0 0 0"
-            animation="property: rotation; to: 0 -360 0; loop: true; dur: 50000; easing: linear"
+            animation="property: rotation; to: 0 -360 0; loop: true; dur: 75000; easing: linear"
           >
             <a-sphere
               id="jupiter"
@@ -148,7 +154,7 @@
           <a-entity
             rotation="0 0 0"
             position="0 0 0"
-            animation="property: rotation; to: 0 -360 0; loop: true; dur: 50000; easing: linear"
+            animation="property: rotation; to: 0 -360 0; loop: true; dur: 750000; easing: linear"
           >
             <a-sphere
               id="saturn"
@@ -169,7 +175,7 @@
           <a-entity
             rotation="0 0 0"
             position="0 0 0"
-            animation="property: rotation; to: 0 -360 0; loop: true; dur: 50000; easing: linear"
+            animation="property: rotation; to: 0 -360 0; loop: true; dur: 750000; easing: linear"
           >
             <a-sphere
               id="uranus"
