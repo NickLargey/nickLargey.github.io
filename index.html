@@ -4,35 +4,197 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NickLargey.github.io VR</title>
+    <title>VR Universe</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
   </head>
+  <script>
+    AFRAME.registerComponent("texture-loader", {
+      schema: {
+        src: {},
+        material_tex: {},
+        mesh: {},
+        texture: {},
+        normal: { type: "boolean" },
+        normal_src: {},
+        wrap: { type: "boolean", default: false },
+        repeat: { type: "boolean", default: false },
+      },
+      init: function () {
+        console.log(this.data.src + " initialized");
+      },
+      update: function () {
+        this.data.texture = new THREE.TextureLoader().load(this.data.src);
+
+        this.data.texture.anisotropy = 16;
+        this.data.texture.minFilter = THREE.NearestFilter;
+        this.data.texture.maxFilter = THREE.NearestFilter;
+
+        this.data.material_tex = new THREE.MeshLambertMaterial({
+          map: this.data.texture,
+        });
+
+        const el = this.el;
+
+        this.data.mesh = el.getObject3D("mesh");
+        this.data.mesh.material = this.data.material_tex;
+
+        if (this.data.normal === "true") {
+          console.log("Normal true");
+          this.data.normal_map = new THREE.TextureLoader().load(
+            this.data.normal_src
+          );
+          this.data.mesh.material.normalMap = this.data.normal_map;
+          this.data.mesh.reveiveShadow = true;
+        }
+
+        if (this.data.wrap === true && this.data.repeat === true) {
+          this.data.texture.wrapS = this.data.texture.wrapT =
+            THREE.RepeatWrapping;
+          this.data.texture.repeat.set(25, 25);
+        }
+      },
+    });
+  </script>
   <body>
-    <a-scene>
-      <a-assets>
-        <a-asset-item
-          id="dragon"
-          src="./assets/dragon/scene.gltf"
-        ></a-asset-item>
-        <a-asset-item id="man" src="./assets/man/manHead.gltf"></a-asset-item>
-      </a-assets>
-      <!-- Man GLTF model -->
-      <a-entity gltf-model="#man" scale=".1 .1 .1" position="0 1.75 -0.7">
-        <!--Dragon GLTF model-->
-        <a-entity
-          rotation="0 0 0"
-          animation="property: rotation; to: 0 -360 0; loop: true; dur: 10000; easing: linear"
+    <a-scene background="color: #000000">
+      <a-sky src="textures/milky_way.jpg"></a-sky>
+      <a-entity
+        rotation="0 0 0"
+        position="0 1.75 -20"
+        animation="property: rotation; to: 10 -360 0; loop: true; dur: 50000; easing: linear"
+      >
+        <a-sphere
+          id="sun"
+          scale="2 2 2"
+          texture-loader="src: textures/sun.jpg;"
         >
           <a-entity
-            gltf-model="#dragon"
-            scale="5 5 5"
-            position="3 0 0"
-            animation-mixer
+            rotation="0 0 0"
+            position="0 0 0"
+            animation="property: rotation; to: 0 -360 0; loop: true; dur: 20000; easing: linear"
           >
-          </a-entity> </a-entity
-      ></a-entity>
+            <a-sphere
+              id="murcury"
+              position="3 0 0"
+              scale=".1 .1 .1"
+              texture-loader="src: textures/mercury.jpg;"
+            ></a-sphere>
+          </a-entity>
+
+          <a-entity
+            rotation="0 0 0"
+            position="0 0 0"
+            animation="property: rotation; to: 0 -360 0; loop: true; dur: 20000; easing: linear"
+          >
+            <a-sphere
+              id="venus"
+              position="-5 0 0"
+              scale=".25 .25 .25"
+              texture-loader="src: textures/venus.jpg;"
+            >
+            </a-sphere>
+          </a-entity>
+
+          <a-entity
+            rotation="0 0 0"
+            position="0 0 0"
+            animation="property: rotation; to: 0 -360 0; loop: true; dur: 30000; easing: linear"
+          >
+            <a-sphere
+              id="earth"
+              position="9 0 0"
+              scale=".5 .5 .5"
+              texture-loader="src: textures/earth.jpg; normal: true; normal_src: textures/earth_normal.tif;"
+            >
+              <a-sphere
+                id="moon"
+                position="2 1 0"
+                scale=".25 .25 .25"
+                texture-loader="src: textures/moon.jpg;"
+              >
+              </a-sphere>
+            </a-sphere>
+          </a-entity>
+
+          <a-entity
+            rotation="0 0 0"
+            position="0 0 0"
+            animation="property: rotation; to: 0 -360 0; loop: true; dur: 30000; easing: linear"
+          >
+            <a-sphere
+              id="mars"
+              position="15 0 0"
+              scale=".35 .35 .35"
+              texture-loader="src: textures/mars.jpg;"
+            >
+            </a-sphere>
+          </a-entity>
+
+          <a-entity
+            rotation="0 0 0"
+            position="0 0 0"
+            animation="property: rotation; to: 0 -360 0; loop: true; dur: 50000; easing: linear"
+          >
+            <a-sphere
+              id="jupiter"
+              position="-22 0 0"
+              scale=".75 .75 .75"
+              texture-loader="src: textures/jupiter.jpg;"
+            >
+            </a-sphere>
+          </a-entity>
+
+          <a-entity
+            rotation="0 0 0"
+            position="0 0 0"
+            animation="property: rotation; to: 0 -360 0; loop: true; dur: 50000; easing: linear"
+          >
+            <a-sphere
+              id="saturn"
+              position="30 0 0"
+              scale=".55 .55 .55"
+              texture-loader="src: textures/saturn.jpg;"
+            >
+              <a-ring
+                color="030303"
+                radius-inner="2"
+                radius-outer="3"
+                rotation="90 0 0"
+                wireframe="true"
+              ></a-ring>
+            </a-sphere>
+          </a-entity>
+
+          <a-entity
+            rotation="0 0 0"
+            position="0 0 0"
+            animation="property: rotation; to: 0 -360 0; loop: true; dur: 50000; easing: linear"
+          >
+            <a-sphere
+              id="uranus"
+              position="-35 0 0"
+              scale=".5 .5 .5"
+              texture-loader="src: textures/uranus.jpg;"
+            >
+            </a-sphere>
+          </a-entity>
+
+          <a-entity
+            rotation="0 0 0"
+            position="0 0 0"
+            animation="property: rotation; to: 0 -360 0; loop: true; dur:80000; easing: linear"
+          >
+            <a-sphere
+              id="neptune"
+              position="40 0 0"
+              scale=".45 .45 .45"
+              texture-loader="src: textures/neptune.jpg;"
+            >
+            </a-sphere>
+          </a-entity>
+        </a-sphere>
+      </a-entity>
     </a-scene>
   </body>
 </html>
-
