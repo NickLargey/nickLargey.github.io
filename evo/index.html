@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>kaboom</title>
+    <meta charset="utf-8" />
+    <style>
+      * {
+        margin: 0 auto;
+      }
+      html,
+      body {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        background-color: black;
+      }
+      canvas {
+        margin: 0 auto;
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <script src="https://kaboomjs.com/lib/0.5.1/kaboom.js"></script>
+    <script src="https://kaboomjs.com/lib/0.5.1/plugins/aseprite.js"></script>
+    <script src="https://kaboomjs.com/lib/0.5.1/plugins/pedit.js"></script>
+    <script src="https://kaboomjs.com/pub/legacy/kbmsprite.js"></script>
+
+    <script>
+      kaboom({
+        ...{
+          fullscreen: false,
+          width: 1040,
+          height: 680,
+          scale: 1,
+          startScene: "main",
+          version: "0.5.1",
+          clearColor: [0, 0, 0, 1],
+        },
+        global: true,
+        plugins: [peditPlugin, asepritePlugin, kbmspritePlugin],
+      });
+      loadKbmsprite("baddie", "sprites/baddie.kbmsprite");
+      loadKbmsprite("ground", "sprites/ground.kbmsprite");
+      loadKbmsprite("hero", "sprites/hero.kbmsprite");
+      loadKbmsprite("nextGen", "sprites/nextGenHero.kbmsprite");
+      loadKbmsprite("tWall", "sprites/tWall.kbmsprite");
+      loadKbmsprite("virus", "sprites/virus.kbmsprite");
+
+      scene("main", (args = {}) => {
+        layers(["bg", "game", "ui"], "game");
+        const MOVE_SPEED = 200;
+        const JUMP_FORCE = 320;
+
+        let vCount = 0;
+        let bCount = 0;
+        let s = 1;
+        let heroCount = 0;
+
+        const score = add([
+          text("Single Cell Organisms Gobbled: "),
+          pos(60, 40),
+          scale(2),
+          layer("ui"),
+          {
+            value: 0,
+          },
+        ]);
+        let time = 30;
+        const timeLeft = add([
+          text("Time: "),
+          pos(60, 65),
+          scale(2),
+          layer("ui"),
+          {
+            value: 0,
+          },
+        ]);
+
+        loop(1, () => {
+          --time;
+          timeLeft.text = "Time: " + time;
+          if (time == 0) {
+            go("death", heroCount);
+          }
+        });
+
+        function grow() {
+          return {
+            growLarger() {
+              s += 0.25;
+              this.scale = s;
+            },
+            change() {
+              if (heroCount >= 5) {
+                hero.changeSprite("nextGen");
+              }
+            },
+            shrink() {
+              s = 1.25;
+              this.scale = s;
+              heroCount = 0;
+            },
+          };
+        }
+
+        let hero = add([
+          sprite("hero"),
+          pos(650, 200),
+          scale(s),
+          body(),
+          grow(),
+          "hero",
+        ]);
+
+        const v = add([sprite("virus"), pos(250, 250), body(), "virus"]);
+
+        const b0 = add([sprite("baddie"), pos(80, 200), body(), "baddie"]);
+
+        const b1 = add([sprite("baddie"), pos(250, 200), body(), "baddie"]);
+
+        const b2 = add([sprite("baddie"), pos(450, 200), body(), "baddie"]);
+
+        const b3 = add([sprite("baddie"), pos(950, 200), body(), "baddie"]);
+
+        keyDown("right", () => {
+          hero.move(MOVE_SPEED, 0);
+        });
+
+        keyDown("left", () => {
+          hero.move(-MOVE_SPEED, 0);
+        });
+
+        keyPress("space", () => {
+          hero.jump(JUMP_FORCE);
+        });
+
+        addLevel(
+          [
+            "|                        |",
+            "|         xx             |",
+            "|                        |",
+            "| xx               xx    |",
+            "|                        |",
+            "|     xx               xx|",
+            "|xx            xxx       |",
+            "|        xx              |",
+            "|xxxxxxxxxxxxxxxxxxxxxxxx|",
+          ],
+          {
+            width: 40,
+            height: 80,
+            "|": [sprite("tWall"), solid()],
+            "x": [sprite("ground"), solid()],
+          }
+        );
+
+        hero.collides("virus", (v) => {
+          destroy(v);
+          vCount--;
+          heroCount++;
+
+          hero.growLarger();
+          console.log(heroCount);
+          hero.change();
+
+          score.text = "Single Cell Organisms Gobbled: " + heroCount;
+        });
+
+        hero.collides("baddie", (b) => {
+          hero.shrink();
+          hero.changeSprite("hero");
+          score.text = "Single Cell Organisms Gobbled: " + heroCount;
+        });
+        let t = rand(1, 5);
+
+        loop(t, () => {
+          if (vCount <= 8) {
+            add([
+              sprite("virus"),
+              pos(
+                (Math.random() * width()) / 2,
+                (Math.random() * height()) / 2
+              ),
+              body(),
+              "virus",
+            ]);
+            vCount++;
+            t = rand(1, 5);
+          }
+        });
+
+        loop(3, () => {
+          b0.jump(JUMP_FORCE);
+          console.log(heroCount);
+        });
+        loop(4.2, () => {
+          b1.jump(JUMP_FORCE);
+        });
+        loop(2, () => {
+          b2.jump(JUMP_FORCE);
+        });
+        loop(2.5, () => {
+          b3.jump(JUMP_FORCE);
+        });
+      });
+
+      scene("death", (score) => {
+        add([
+          text("Total Gobbled: " + score, 24),
+          pos(width() / 2, height() / 2),
+          origin("center"),
+        ]);
+        keyPress("space", () => {
+          go("main");
+        });
+      });
+      start("main");
+    </script>
+  </body>
+</html>
