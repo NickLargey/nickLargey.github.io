@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <title>kaboom</title>
+    <title>DoTs: ReLoAdEd!!</title>
     <meta charset="utf-8" />
     <style>
       * {
@@ -137,7 +137,15 @@
 
         const b0 = add([sprite("baddie"), pos(80, 200), body(), "baddie"]);
 
-        const b1 = add([sprite("baddie"), pos(250, 200), body(), "baddie"]);
+        const b1 = add([
+          sprite("baddie"),
+          pos(250, 200),
+          body(),
+          "baddie",
+          {
+            dir: 1,
+          },
+        ]);
 
         const b2 = add([
           sprite("baddie"),
@@ -215,9 +223,10 @@
         loop(3, () => {
           b0.jump(JUMP_FORCE);
         });
-        loop(4.2, () => {
-          b1.jump(JUMP_FORCE);
+        loop(1.5, () => {
+          b1.jump(JUMP_FORCE * 2);
         });
+
         b2.action(() => {
           b2.move(MOVE_SPEED * b2.dir, 0);
           if (b2.dir === 1 && b2.pos.x >= width() - 100) {
@@ -228,10 +237,10 @@
           }
         });
         loop(2.5, () => {
-          b3.jump(JUMP_FORCE);
+          b3.jump(JUMP_FORCE * 1.5);
         });
         loop(3.5, () => {
-          b4.jump(JUMP_FORCE + rand(50, 100));
+          b4.jump(JUMP_FORCE * 2);
         });
       });
 
