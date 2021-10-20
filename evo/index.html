@@ -48,7 +48,25 @@
       loadKbmsprite("nextGen", "sprites/nextGenHero.kbmsprite");
       loadKbmsprite("tWall", "sprites/tWall.kbmsprite");
       loadKbmsprite("virus", "sprites/virus.kbmsprite");
+      scene("loadScreen", () => {
+        add([
+          text("Do The Evolution!!", 52),
+          pos(width() / 2, height() / 3),
+          origin("center"),
+        ]);
+        add([
+          text("Press Space to Begin", 24),
+          pos(width() / 2, height() / 2),
+          origin("center"),
+          {
+            value: 0,
+          },
+        ]);
 
+        keyPress("space", () => {
+          go("main");
+        });
+      });
       scene("main", (args = {}) => {
         layers(["bg", "game", "ui"], "game");
         const MOVE_SPEED = 200;
@@ -121,9 +139,17 @@
 
         const b1 = add([sprite("baddie"), pos(250, 200), body(), "baddie"]);
 
-        const b2 = add([sprite("baddie"), pos(450, 200), body(), "baddie"]);
+        const b2 = add([
+          sprite("baddie"),
+          pos(450, 200),
+          body(),
+          "baddie",
+          { dir: 1 },
+        ]);
 
-        const b3 = add([sprite("baddie"), pos(950, 200), body(), "baddie"]);
+        const b3 = add([sprite("baddie"), pos(750, 200), body(), "baddie"]);
+
+        const b4 = add([sprite("baddie"), pos(950, 200), body(), "baddie"]);
 
         keyDown("right", () => {
           hero.move(MOVE_SPEED, 0);
@@ -153,7 +179,7 @@
             width: 40,
             height: 80,
             "|": [sprite("tWall"), solid()],
-            "x": [sprite("ground"), solid()],
+            x: [sprite("ground"), solid()],
           }
         );
 
@@ -163,7 +189,6 @@
           heroCount++;
 
           hero.growLarger();
-          console.log(heroCount);
           hero.change();
 
           score.text = "Single Cell Organisms Gobbled: " + heroCount;
@@ -199,11 +224,21 @@
         loop(4.2, () => {
           b1.jump(JUMP_FORCE);
         });
-        loop(2, () => {
-          b2.jump(JUMP_FORCE);
+        b2.action((p) => {
+          b2.move(MOVE_SPEED * b2.dir, 0);
+          console.log();
+          if (b2.dir === 1 && b2.pos.x >= width() - 100) {
+            b2.dir = -1;
+          }
+          if (b2.dir === -1 && b2.pos.x <= 65) {
+            b2.dir = 1;
+          }
         });
         loop(2.5, () => {
           b3.jump(JUMP_FORCE);
+        });
+        loop(3.5, () => {
+          b4.jump(JUMP_FORCE + rand(50, 100));
         });
       });
 
@@ -213,11 +248,11 @@
           pos(width() / 2, height() / 2),
           origin("center"),
         ]);
-        keyPress("space", () => {
+        keyPress("enter", () => {
           go("main");
         });
       });
-      start("main");
+      start("loadScreen");
     </script>
   </body>
 </html>
