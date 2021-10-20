@@ -50,7 +50,7 @@
       loadKbmsprite("virus", "sprites/virus.kbmsprite");
       scene("loadScreen", () => {
         add([
-          text("Do The Evolution!!", 52),
+          text("Dots: Reloaded!!", 52),
           pos(width() / 2, height() / 3),
           origin("center"),
         ]);
@@ -224,9 +224,8 @@
         loop(4.2, () => {
           b1.jump(JUMP_FORCE);
         });
-        b2.action((p) => {
+        b2.action(() => {
           b2.move(MOVE_SPEED * b2.dir, 0);
-          console.log();
           if (b2.dir === 1 && b2.pos.x >= width() - 100) {
             b2.dir = -1;
           }
@@ -246,6 +245,11 @@
         add([
           text("Total Gobbled: " + score, 24),
           pos(width() / 2, height() / 2),
+          origin("center"),
+        ]);
+        add([
+          text("Press Enter to play again.", 18),
+          pos(width() / 2, height() / 3),
           origin("center"),
         ]);
         keyPress("enter", () => {
