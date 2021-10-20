@@ -16,7 +16,7 @@
         background-color: black;
       }
       canvas {
-        margin: 0 auto;
+        margin: auto;
         display: block;
       }
     </style>
@@ -199,27 +199,21 @@
           hero.changeSprite("hero");
           score.text = "Single Cell Organisms Gobbled: " + heroCount;
         });
-        let t = rand(1, 5);
 
-        loop(t, () => {
+        loop(2, () => {
           if (vCount <= 8) {
             add([
               sprite("virus"),
-              pos(
-                (Math.random() * width()) / 2,
-                (Math.random() * height()) / 2
-              ),
+              pos(Math.random() * width(), Math.random() * height()),
               body(),
               "virus",
             ]);
             vCount++;
-            t = rand(1, 5);
           }
         });
 
         loop(3, () => {
           b0.jump(JUMP_FORCE);
-          console.log(heroCount);
         });
         loop(4.2, () => {
           b1.jump(JUMP_FORCE);
