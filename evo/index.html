@@ -133,7 +133,7 @@
           "hero",
         ]);
 
-        const v = add([sprite("virus"), pos(250, 250), body(), "virus"]);
+        const v = add([sprite("virus"), pos(350, 250), body(), "virus"]);
 
         const b0 = add([sprite("baddie"), pos(80, 200), body(), "baddie"]);
 
@@ -167,7 +167,7 @@
           [
             "|                        |",
             "|         xx             |",
-            "|                        |",
+            "|           xx           |",
             "| xx               xx    |",
             "|                        |",
             "|     xx               xx|",
@@ -204,7 +204,7 @@
           if (vCount <= 8) {
             add([
               sprite("virus"),
-              pos(Math.random() * width(), Math.random() * height()),
+              pos(Math.random() * width(), (Math.random() * height()) / 2),
               body(),
               "virus",
             ]);
