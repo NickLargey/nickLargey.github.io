@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>IP Geolocation</title>
+</head>
+<body>
+  <main class="container mt-4 mb-2 border border-white">
+    <div class="jumbotron text-white bg-transparent">
+        <h1 class="display-4 mt-5">IP Geolocation</h1>
+        <hr style="margin-bottom: 3%" />
+        <p class="lead">Ever wonder where your information's going? Or who's trying 
+            to send you something? Just enter the IP address you've got and have all the Geolocation 
+            info at your fingertips.</p>
+        <p class="lead">You can also leave it blank to query your own IP address!</p>
+        <hr style="margin-bottom: 8%" />
+        <div class="text-center">
+            <div class="form-group col-6 mb-2 mx-auto ">
+                <input type="input" class="form-control text-center" id="ipInput" placeholder="Enter IP Address">
+            </div>
+            <button type="submit" class="btn btn-info mb-2" id="ipSubmit">Search</button>
+            <script type="text/javascript">
+              document.getElementById("ipSubmit").onclick = function () {
+                let ip = document.getElementById('ipInput').value;
+                localStorage.setItem('ip', ip);
+                location.href = "./search.html";
+              };
+          </script>
+        </div>
+        <div class="d-flex align-items-end flex-column" style="height: 10%;">
+          <div class="p-1">
+            Check out my work on my <a href="https://github.com/NickLargey">Github</a> or my <a href="http://NickLargey.com">Website</a>
+          </div>
+        </div>
+      </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
