@@ -5,7 +5,9 @@ const maps =
 window.onload = function getIpInfo() {
   let resolveIP = localStorage.getItem("ip");
   this.console.log(resolveIP);
-  fetch("https://justcors.com/l_86lhbadshe/http://ip-api.com/json/" + resolveIP)
+  fetch(
+    "https://justcors.com/l_86lhbadshe/https://ip-api.com/json/" + resolveIP
+  )
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
