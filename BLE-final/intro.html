@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>An Introduction to Bluetooth and BLE</title>
+  </head>
+  <body>
+    <div class="title-card">
+      <h1>Introduction to Bluetooth and BLE >>></h1>
+      <div class="nav">
+        <ul>
+          <li><a href="./index.html"><< PREV</a></li>
+          <li><a href="./index.html">HOME</a></li>
+          <li><a href="./packets.html">NEXT >></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="main">
+      <h2>The Basics of Bluetooth and BLE</h2>
+      <h3>A Brief History of BLE</h3>
+      <p>
+        &emsp;Contrary to popular belief Bluetooth and Bluetooth Low Energy
+        (BLE) are not the same protocol. Although there is much overlap between
+        the two, BLE started at Nokia in 2001 under the name “Wibree” and in
+        2010 it was rolled into the release of Bluetooth 4.0 after negotiations
+        between Nokia and the Bluetooth Special Interest Group. In 2017
+        Bluetooth 5 was announced which added increased range to the version of
+        BLE that was released alongside it.
+      </p>
+      <p>
+        &emsp;BLE has many everyday uses, mainly connecting mobile phones and
+        tablets to peripherals such as personal healthcare devices, wireless
+        keyboards and mice and headphones or speakers. Alongside personal use
+        BLEhas many industrial applications such as creating mesh networks,
+        linking sensors and monitors and user data services.
+      </p>
+      <h3>Advertising, GAP and GATT</h3>
+      <p>
+        &emsp;Advertising and connecting in BLE is handled through the GAP or
+        the Generic Access Profile standard. There are two main devices that are
+        required for a successful connection, the Peripheral device and the
+        Central device. The peripheral device is usually a small, low powered
+        device (like the devices listed in the history section) that connect to
+        the central device. The central device is usually a tablet, phone or
+        device that has much more computing power and memory. Each broadcast a
+        payload that’s 31 bytes, but the 2 most important payloads are the
+        Advertising Data payload and the Scan Response payload. Both of which
+        are broadcast by the peripheral device to let the central device know
+        it’s in range. The first sent is the Advertising Data payload which can
+        be sufficient, but the central device can request a Scan Response
+        payload as well for additional information about the device looking to
+        connect.
+      </p>
+      <p>Below is a visualization of the GAP process:</p>
+      <a class="lightbox" href="#gap">
+        <img
+          src="./assets/microcontrollers_Advertising2.png"
+          alt="Advertising"
+        />
+      </a>
+      <div class="lightbox-target" id="gap">
+        <img
+          src="./assets/microcontrollers_Advertising2.png"
+          alt="Advertising"
+        />
+        <a class="lightbox-close" href="#"></a>
+      </div>
+      <p>
+        &emsp;After the connection is established with GAP, GATT or the Generic
+        ATTribute Profile takes over in order to transfer data between the
+        peripheral and central devices. Once a device is connected and in the
+        GATT stage, the peripheral is limited to transferring data to that one
+        central device. A central device may have multiple peripherals connected
+        to it however. Once in the GATT stage, the peripheral is now known as
+        the GATT server and the central device is known as the GATT client. At
+        this point all transactions are started by the GATT client, and receive
+        a response from the GATT server. However, it’s the server that sets the
+        connection time interval and at this interval, the client will try to
+        reconnect to the server to see if new data has been created.
+      </p>
+      <p>Below is a visualization of the GATT connection process:</p>
+      <a class="lightbox" href="#gatt">
+        <img
+          src="./assets/microcontrollers_GattMasterSlaveTransactions.png"
+          alt="gatt"
+        />
+      </a>
+      <div class="lightbox-target" id="gatt">
+        <img
+          src="./assets/microcontrollers_GattMasterSlaveTransactions.png"
+          alt="gatt"
+        />
+        <a class="lightbox-close" href="#"></a>
+      </div>
+      <p>
+        &emsp;There are three important objects in each GATT transaction -
+        Profiles, Services and Characteristics. These objects are nested within
+        each other, where the characteristics are nested in the services and
+        then nested in the Profile. The characteristics are the lowest level of
+        the transaction and are the primary point of interaction between the
+        client and server. There are a multitude of already defined
+        characteristic ID’s that are universal among BLE devices, however,
+        custom characteristic ID’s can be written so a specific client and
+        server can only pair with each other.
+      </p>
+      <p>Below is a visualization of a Profile Packet:</p>
+      <a class="lightbox" href="#gatstruct">
+        <img
+          style="width: 25%"
+          src="./assets/microcontrollers_GattStructure.png"
+          alt="GATT structure"
+        />
+      </a>
+      <div class="lightbox-target" id="gatstruct">
+        <img
+          src="./assets/microcontrollers_GattStructure.png"
+          alt="GATT structure"
+        />
+        <a class="lightbox-close" href="#"></a>
+      </div>
+      <a href="./sniffing.html" class="next">The Sniffing Process >>></a>
+    </div>
+  </body>
+</html>

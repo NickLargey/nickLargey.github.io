@@ -1,0 +1,61 @@
+@font-face {
+  font-family: "CustomFont";
+  src: url(./assets/SyneMono-Regular.ttf);
+}
+body {
+  background-color: #709b90;
+  font-family: 'Times New Roman', Helvetica, sans-serif;
+}
+
+.title-card {
+  font-family: 'CustomFont', Helvetica, sans-serif;
+  background-color: rgb(178, 121, 232);
+  height: 25rem;
+  width: 75%;
+  position: relative;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate(15%, -50%);
+}
+
+.title-card h1 {
+  display: block;
+  margin: auto;
+  text-align: center;
+  position:absolute;
+  top: 30%;
+  right: 17%;
+}
+
+.title-card h3 {
+  display: block;
+  margin: auto auto;
+  text-align: center;
+  max-width: 60%;
+  position: absolute;
+  top: 45%;
+  right: 22%;
+}
+.title-card h4 {
+  display: block;
+  margin: auto auto;
+  text-align: center;
+  max-width: 60%;
+  position: absolute;
+  top: 93%;
+  right: 2%;
+}
+.title-card a {
+  font-size: 1em;
+  display: block;
+  margin: auto auto;
+  text-align: center;
+  position: absolute;
+  top: 70%;
+  right: 48%;
+}
+
+.title-card a:hover {
+  color: #c00;
+}
