@@ -1,0 +1,119 @@
+@font-face {
+  font-family: "CustomFont";
+  src: url("../assets/fonts/synemono-regular-webfont.woff");
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial Narrow", Arial, sans-serif;
+  /* background: linear-gradient(rgb(47, 31, 31), rgb(233, 50, 50)); */
+  background: conic-gradient(
+    from 3.1416rad at 10% 60%,
+    rgb(19, 3, 3),
+    rgb(230, 133, 133),
+    rgb(233, 50, 50)
+  );
+  /* display: grid;
+  justify-content: center; */
+}
+
+.container > .title {
+  grid-area: main;
+  grid-column: column-start / span 2;
+  text-align: center;
+  font-family: "CustomFont";
+  font-size: 2em;
+  font-weight: 100;
+  margin: 0;
+  color: white;
+  /* border: red 1px solid; */
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+.sidebar > .site-nav {
+  font-family: "CustomFont";
+  font-size: xx-large;
+  display: flex;
+  flex-direction: column;
+  margin-top: -2em;
+  padding: 0;
+  list-style-type: none;
+}
+
+.site-nav > li {
+  display: flex;
+  justify-content: space-around;
+}
+
+.site-nav > li > a {
+  display: block;
+  padding: 0;
+  color: white;
+  text-decoration: none;
+}
+
+.header {
+  margin: 0;
+  padding: 0;
+  grid-area: header;
+  width: 300px;
+}
+
+.header > .logo {
+  margin-top: -5em;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.content {
+  display: grid;
+  padding: 1em;
+  margin: 0;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  grid-area: content;
+  grid-column: column 1 / span 2;
+  border-left: black 1px solid;
+  border-bottom: black 1px solid;
+}
+
+.content > p {
+  text-align: center;
+  margin: 0;
+}
+
+.footer {
+  grid-area: footer;
+  grid-column: column 2;
+  margin: 1em;
+  padding: 0;
+}
+
+.footer > p {
+  text-align: right;
+}
+
+.container {
+  /* background-color: rgba(0, 0, 0, 0.3); */
+  width: 80vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  /* border: #cc6b5a 1px solid; */
+  display: grid;
+  grid-template-areas:
+    "header content"
+    "sidebar content"
+    "main main"
+    "footer footer";
+  grid-template-columns: 0.1fr 2fr;
+  grid-template-rows: 0.5fr 3fr 0.5fr;
+  /* grid-auto-flow: dense; */
+}

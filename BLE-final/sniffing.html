@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./style.css" rel="stylesheet" />
+    <title>Sniffing BLE with Wireshark</title>
+  </head>
+  <body>
+    <div class="title-card">
+      <h1>Sniffing BLE traffic with Wireshark and the nRF52840 >>></h1>
+      <div class="nav">
+        <ul>
+          <li><a href="./intro.html"><< PREV</a></li>
+          <li><a href="./index.html">HOME</a></li>
+          <li><a href="./packets.html">NEXT >></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="main">
+      <h3>Tools Needed</h3>
+      <p>
+        &emsp;For this project we're going to be sniffing traffic of a
+        <a
+          class="inline-link"
+          target="_blank"
+          href="https://smile.amazon.com/dp/B0BD6TFSCL?psc=1&ref=ppx_yo2ov_dt_b_product_details"
+        >
+          cheap smartwatch</a
+        >
+        that's connected to a Nokia C100. I got a generic Chinese made
+        smartwatch branded as a BOFIDAR watch that can be used as a fitness
+        tracker, heart rate monitor, blood oxygen monitor, blood pressure
+        monitor and sleep monitor off of Amazon for about $25. It uses a custom
+        app that can be downloaded through the Google Play store or Apple store
+        for free called Dafit. Since I wasn't too keen on putting this App on my
+        personal phone I decided to get a cheap burner phone from Best Buy for
+        about $40.
+      </p>
+      <p>
+        &emsp;We'll also need to set up a bluetooth dongle so that we can use
+        Wireshark to sniff the bluetooth traffic. For this we’re going to use
+        the Adafruit ItsyBitsy nRF52840 Express. But any dongle that has the
+        nRF52840 chipset from Nordic Semiconductor will work for our purposes.
+        There’s a few steps that need to be taken to get the dongle to work
+        properly with Wireshark.
+      </p>
+      <h3>Setting up the nRF52840 and Wireshark</h3>
+      <ol class="sniffer-steps">
+        <li>
+          After plugging in the dongle to your computer, press the reset button
+          twice and the dongle should mount as a storage device. Download the
+          <a
+            href="https://github.com/adafruit/Adafruit_nRF52_Bootloader/releases/download/softdevice-uf2/sniffer_nrf52840dongle_4.1.0.uf2"
+            class="inline-link"
+            target="_blank"
+          >
+            Sniffer UF2 firmware file</a
+          >
+          from Adafruit.
+        </li>
+        <li>
+          If Python 3 not on your system,
+          <a href="https://www.python.org" class="inline-link" target="_blank"
+            >install it now.</a
+          >
+        </li>
+        <li>
+          Install
+          <a href="https://www.wireshark.org" class="inline-link" target="_blank">Wireshark</a>
+          to sniff the packets
+        </li>
+        <li>
+          Download the
+          <a
+            href="https://www.nordicsemi.com/Products/Development-tools/nRF-Sniffer-for-Bluetooth-LE"
+            class="inline-link" target="_blank"
+          >
+            Nordic nRF Bluetooth sniffer plugin</a
+          >
+        </li>
+        <li>
+          To install the plugin, first we have to locate where "extcap" folder
+          lives on our harddrive. We can do this by opening the Help menu and
+          going to "About Wireshark"
+        </li>
+        <a class="lightbox" href="#extpath">
+          <img src="./assets/extpath.png" alt="extpath" />
+        </a>
+        <div class="lightbox-target" id="extpath">
+          <img src="./assets/extpath.png" alt="extpath" />
+          <a class="lightbox-close" href="#"></a>
+        </div>
+        <li>
+          The plugin will come as a ZIP file. Navigate to the extcap path and
+          drop the files from the nordic zip into the folder
+        </li>
+        <a class="lightbox" href="#extract">
+          <img src="./assets/extcap-extract.png" alt="extcap extract" />
+        </a>
+        <div class="lightbox-target" id="extract">
+          <img src="./assets/extcap-extract.png" alt="extcap extract" />
+          <a class="lightbox-close" href="#"></a>
+        </div>
+        <li>
+          Plug in the nRF52840 and open Wireshark, the dongle should show up
+        </li>
+        <a class="lightbox" href="#WS">
+          <img src="./assets/Wireshark.png" alt="wireshark" />
+        </a>
+        <div class="lightbox-target" id="WS">
+          <img src="./assets/Wireshark.png" alt="wireshark" />
+          <a class="lightbox-close" href="#"></a>
+        </div>
+
+        <li>
+          Double click on the nRF52840 and Wireshark should begin collecting
+          packets
+        </li>
+        <a class="lightbox" href="#pcap">
+          <img src="./assets/packet-capture.png" alt="pcap" />
+        </a>
+        <div class="lightbox-target" id="pcap">
+          <img src="./assets/packet-capture.png" alt="pcap" />
+          <a class="lightbox-close" href="#"></a>
+        </div>
+      </ol>
+      <a href="./packets.html" class="next">Analysing and Exploiting >>></a>
+    </div>
+  </body>
+</html>

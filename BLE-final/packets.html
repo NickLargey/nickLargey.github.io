@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./style.css" rel="stylesheet" />
+    <title>Analysis and Exploitation</title>
+  </head>
+  <body>
+    <div class="title-card">
+      <h1>Analysis and Exploitation >>></h1>
+      <div class="nav">
+        <ul>
+          <li><a href="./sniffing.html"><< PREV</a></li>
+          <li><a href="./index.html">HOME</a></li>
+          <li><a href="./conclusion.html">NEXT >></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="main">
+      <h3>Analysing traffic captured by Wireshark</h3>
+      <a class="lightbox" href="#packets">
+        <img src="./assets/captured-packets.png" alt="wireshark screenshot" />
+      </a>
+      <div class="lightbox-target" id="packets">
+        <img src="./assets/captured-packets.png" alt="wireshark screenshot" />
+        <a class="lightbox-close" href="#"></a>
+      </div>
+      <p>
+        &emsp;Using Wireshark we can capture the packets sent between the watch
+        and phone. As we can see in the photo above, we have a connection, noted
+        as "Master" and "Slave", outdated terms, but with a little investigating
+        we are able to find the MAC address of the watch and phone, and use
+        those to figure out which one is the Client and which is the Server.
+      </p>
+      <a class="lightbox" href="#M/S">
+        <img src="./assets/master-slave.png" alt="Client/Server" />
+      </a>
+      <div class="lightbox-target" id="M/S">
+        <img src="./assets/master-slave.png" alt="Client/Server" />
+        <a class="lightbox-close" href="#"></a>
+      </div>
+      <p>
+        &emsp;Knowing that the watches MAC address is the one ending in 0b:34 we
+        can see that the "Slave" is the is the server and the "Master" is the
+        Client. When we open one of the captured packets, we see some
+        information of interest. First, we should sort by protocol type. A lot
+        of packets captured for BLE are broadcast packets and although they can
+        be of some use, that's beyond the scope of this project. For BLE
+        sniffing, what we are interested in is the "Bluetooth Low Energy Link
+        Layer". We see a few drop down menu's that we can select from. The one
+        we're interested in is the "Information Data, Handle" drop down. As
+        previously mentioned, there are a standard set of UUID's that are
+        reserved for certain characteristics.
+      </p>
+      <p>
+        &emsp;On the watch, if we open up the Heart Rate Monitor while recording
+        packets in Wireshark, soon we'll capture a packet that has the UUID of
+        0x2A37 just as in the photo below.
+      </p>
+      <a class="lightbox" href="#HRM">
+        <img src="./assets/HRM.png" alt="Heart Rate Monitor" />
+      </a>
+      <div class="lightbox-target" id="HRM">
+        <img src="./assets/HRM.png" alt="Heart Rate Monitor" />
+        <a class="lightbox-close" href="#"></a>
+      </div>
+      <p>
+        &emsp;This confirms that we're successfully intercepting packets! Now
+        that it's confirmed we're looking at the right Client/Server pair, we
+        can use the nRF Connect app provided by Nordic to exploit our findings.
+        When we open the app, we need to begin scanning again so that we can
+        connect to the Server.
+      </p>
+      <a class="lightbox" href="#nRFscan">
+        <img
+          style="width: 25%"
+          src="./assets/Screenshot_20221211-212043_nRF Connect.jpg"
+          alt="nRFscan"
+        />
+      </a>
+      <div class="lightbox-target" id="nRFscan">
+        <img
+          src="./assets/Screenshot_20221211-212043_nRF Connect.jpg"
+          alt="nRFscan"
+        />
+        <a class="lightbox-close" href="#"></a>
+      </div>
+      <p>
+        &emsp;Once we connect, we're able to send and receive commands from the
+        app. Below is a screenshot of the nRF connect app, ready to read and
+        write data.
+      </p>
+      <a class="lightbox" href="#nRFpackets">
+        <img
+          style="width: 25%"
+          src="./assets/Screenshot_20221212-190545_nRF Connect.jpg"
+          alt="nRFpackets"
+        />
+      </a>
+      <div class="lightbox-target" id="nRFpackets">
+        <img
+          src="./assets/Screenshot_20221211-212043_nRF Connect.jpg"
+          alt="nRFpackets"
+        />
+        <a class="lightbox-close" href="#"></a>
+      </div>
+
+      <a href="./conclusion.html" class="next"
+        >Conclusion and Final Thoughts >>></a
+      >
+    </div>
+  </body>
+</html>

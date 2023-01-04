@@ -1,0 +1,129 @@
+@font-face {
+  font-family: "CustomFont";
+  src: url("../assets/fonts/bd_geminis-webfont.woff");
+}
+
+:root {
+  box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+}
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  display: grid;
+  justify-content: center;
+  overflow: hidden;
+}
+h1 {
+  font-family: "CustomFont";
+  font-size: 5em;
+  margin-left: 0.5em;
+  margin-top: 0;
+  color: cadetblue;
+  /* border: red 1px solid; */
+}
+#hydra-bg {
+  position: fixed; /* ignore margins */
+  top: 0px;
+  left: 0px;
+  width: 100%; /* fill screen */
+  height: 100%;
+  background-size: cover;
+  overflow-y: hidden;
+  z-index: -1; /* place behind everything else */
+  display: block;
+}
+.sidebar {
+  grid-area: header;
+}
+
+.site-nav {
+  font-family: "CustomFont";
+  font-size: xx-large;
+  display: flex;
+  margin: 0;
+  padding: 0.5em;
+  list-style-type: none;
+  /* border: green 1px solid; */
+}
+
+.site-nav > li {
+  margin-top: 0;
+}
+
+.site-nav > li > a {
+  display: block;
+  padding: 0 0.5em;
+  color: white;
+  text-decoration: none;
+}
+
+.header {
+  grid-area: header;
+  grid-column: column 2;
+  width: 450px;
+  height: fit-content;
+  /* border: pink 1px solid; */
+}
+
+.logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* border: blueviolet 1px solid; */
+}
+
+.content {
+  grid-area: content;
+  margin: -2em 0;
+  grid-column: column 1 / span 2;
+  /* border: red 1px solid; */
+}
+
+.content > p {
+  color: white;
+  text-align: center;
+  margin: 0;
+  padding: 0.5em;
+}
+
+.footer {
+  grid-area: footer;
+  grid-column: column 2;
+  margin-right: 0.5em;
+  padding: 0;
+}
+
+.footer > p {
+  color: white;
+  text-align: right;
+}
+
+a {
+  color: white;
+}
+
+.container {
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  max-width: 1290px;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  border-left: #cc6b5a 1px solid;
+  border-right: #cc6b5a 1px solid;
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "content content"
+    "footer footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
