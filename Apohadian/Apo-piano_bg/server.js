@@ -9,7 +9,7 @@ app.use(
 );
 
 app.get("/*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend", "index.html"));
+  res.sendFile(path.resolve(__dirname, "frontend", "piano.html"));
 });
 
 app.listen(process.env.PORT || 5000, () => console.log("Server running.."));
