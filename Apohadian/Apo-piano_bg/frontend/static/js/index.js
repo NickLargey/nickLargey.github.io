@@ -12,10 +12,10 @@ const navigateTo = (url) => {
 const router = async () => {
   const routes = [
     { path: "/", view: Home },
-    // { path: "/calendar", view: Calendar },
-    // { path: "/gallery", view: Gallery },
-    // { path: "/error", view: Error },
-    // { path: "/shop", view: Shop },
+    { path: "/calendar", view: Calendar },
+    { path: "/gallery", view: Gallery },
+    { path: "/error", view: Error },
+    { path: "/shop", view: Shop },
   ];
 
   const potentialMatches = routes.map((route) => {
