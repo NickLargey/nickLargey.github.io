@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MIDI Visualizer and RNN</title>
+    <script src="https://cdn.jsdelivr.net/npm/@magenta/music@^1.0.0"></script>
+  </head>
+  <body>
+    <canvas id="viz"></canvas>
+    <button id="playBtn">Play/Stop</button>
+    <button id="rnnBtn">Activate RNN</button>
+    <canvas id="RNNviz"></canvas>
+    <script>
+      const player = new mm.SoundFontPlayer(
+        "https://storage.googleapis.com/magentadata/js/soundfonts/sgm_plus"
+      );
+      const rnn_steps = 20;
+      const rnn_temperature = 1.5;
+      const music_rnn = new mm.MusicRNN(
+        "https://storage.googleapis.com/magentadata/js/checkpoints/music_rnn/basic_rnn"
+      );
+      music_rnn.initialize();
+      const rnnPlayer = new mm.Player();
+
+      async function convertMidiToNoteSequence(midiFile) {
+        const midi = await fetch(midiFile).then((response) =>
+          response.arrayBuffer()
+        );
+        return mm.midiToSequenceProto(midi);
+      }
+
+      let kraft;
+      convertMidiToNoteSequence(
+        "../assets/Kraftwerk_Radio_Aktivitaet-short.mid"
+      )
+        .then((sequence) => {
+          kraft = sequence;
+          console.log("Original NoteSequence:", kraft);
+
+          // Filter valid notes
+          kraft = filterValidNotes(kraft);
+          console.log("Filtered NoteSequence:", kraft);
+
+          // Visualizer configuration
+          const config = {
+            noteHeight: 6,
+            pixelsPerTimeStep: 30,
+            noteSpacing: 1,
+            noteRGB: "8, 41, 64",
+            activeNoteRGB: "240, 84, 119",
+          };
+
+          // Visualize the filtered NoteSequence
+          let viz = new mm.Visualizer(
+            kraft,
+            document.getElementById("viz"),
+            config
+          );
+
+          vizPlayer = new mm.Player(false, {
+            run: (note) => viz.redraw(note),
+            stop: () => {
+              console.log("done");
+            },
+          });
+        })
+        .catch((error) => console.error("Error:", error));
+
+      function filterValidNotes(n_seq) {
+        const MIN_PITCH = 21; // MIDI pitch for A0
+        const MAX_PITCH = 108; // MIDI pitch for C8
+
+        n_seq.notes = n_seq.notes.filter((note) => {
+          return note.pitch >= MIN_PITCH && note.pitch <= MAX_PITCH;
+        });
+
+        return n_seq;
+      }
+
+      document.getElementById("playBtn").addEventListener("click", () => {
+        if (!kraft) {
+          console.error("NoteSequence not loaded");
+          return;
+        }
+        if (player.isPlaying()) {
+          player.stop();
+        } else {
+          player.start(kraft);
+        }
+      });
+
+      document.getElementById("rnnBtn").addEventListener("click", () => {
+        if (!kraft) {
+          console.error("NoteSequence not loaded");
+          return;
+        }
+
+        // Ensure the sequence is quantized
+        const qns = mm.sequences.quantizeNoteSequence(kraft, 4);
+
+        // Continue the sequence using the RNN model
+        music_rnn
+          .continueSequence(qns, rnn_steps, rnn_temperature)
+          .then((sample) => {
+            // Play the generated sequence
+            rnnPlayer.start(sample);
+          })
+          .catch((error) => console.error("Error generating sequence:", error));
+      });
+    </script>
+  </body>
+</html>
