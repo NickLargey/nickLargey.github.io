@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="styles.css" rel="stylesheet" />
+    <title>GLSL practice</title>
+  </head>
+  <body>
+    <div id="container">
+      <a href="https://github.com/NickLargey/DigitalVideoSynth" target="_blank">
+        Project Source on GitHub
+      </a>
+    </div>
+
+    <script type="x-shader/x-vertex" id="vertexShader">
+      attribute float size;
+      varying vec3 vColor;
+      varying vec3 pos;
+      void main() {
+        pos = position;
+      	vColor = color;
+      	vec4 mvPosition = modelViewMatrix * vec4( pos, 1.0 );
+      	gl_PointSize = size * ( 300.0 / -mvPosition.z );
+      	gl_Position = projectionMatrix * mvPosition;
+      }
+    </script>
+
+    <script type="x-shader/x-fragment" id="fragmentShader">
+      uniform sampler2D pointTexture;
+      varying vec3 vColor;
+      uniform float millis;
+      varying vec3 pos;
+      void main() {
+        float c = (sin(pos.x * 16. + millis/1000.) + 1. )/2.; // divide millis by 1000 to put into seconds, slowing down the scroll
+        gl_FragColor = vec4(c, 0., 1., 1.);
+        gl_FragColor = gl_FragColor * texture2D( pointTexture, gl_PointCoord );
+      }
+    </script>
+    <!-- void main() {
+          	gl_FragColor = vec4( vColor, 1.0 );
+          	gl_FragColor = gl_FragColor * texture2D( pointTexture, gl_PointCoord );
+          } -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": ""
+        }
+      }
+    </script>
+    <script type="module">
+      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.174.0/build/three.module.js";
+      import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js";
+
+      // SCENE, CAMERA AND RENDERER OBJECT INIT
+      const loader = new THREE.FileLoader();
+      const scene = new THREE.Scene();
+      const fov = 60;
+      const aspect = 1920 / 1080;
+      const near = 1;
+      const far = 10000.0;
+
+      let fragmentShader, vertexShader;
+      let camera, renderer, ambLight, geometry, uniforms;
+
+      init();
+
+      function init() {
+        scene.background = new THREE.Color().setHex(0x000000);
+
+        camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+
+        // renderer = new THREE.WebGLRenderer();
+        // renderer.setSize(window.innerWidth, window.innerHeight);
+        // document.body.appendChild(renderer.domElement);
+
+        // fragmentShader = document.getElementById("fragmentShader").text;
+        // vertexShader = document.getElementById("vertexShader").text;
+
+        // HANDLE WINDOW RESIZE
+        window.addEventListener("resize", () => {
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        more();
+      }
+
+      function more() {
+        var light = new THREE.AmbientLight(0xffffff); // soft white light
+        scene.add(light);
+
+        geometry = new THREE.BufferGeometry();
+
+        camera.position.z = 50;
+
+        const positions = [];
+        const colors = [];
+        const sizes = [];
+
+        let color = new THREE.Color();
+
+        for (let i = 0; i < 3; i++) {
+          positions.push(Math.random() * 2 * (Math.random() * 10) - 1);
+          positions.push(Math.random() * 2 * (Math.random() * -10) - 1);
+          positions.push(Math.random() * 2 * (Math.random() * 12) - 1);
+
+          color.setHSL((i / Math.random()) * 2 - Math.random(), 1.0, 0.5);
+
+          colors.push(color.r, color.g, color.b);
+
+          sizes.push(200);
+        }
+
+        geometry.setAttribute(
+          "position",
+          new THREE.Float32BufferAttribute(positions, 3)
+        );
+        // const color = new THREE.Color(0.1, 0.3, 0.2);
+
+        geometry.setAttribute(
+          "color",
+          new THREE.Float32BufferAttribute(colors, 3)
+        );
+
+        // const sizes = [10, 20, 30];
+        geometry.setAttribute(
+          "size",
+          new THREE.Float32BufferAttribute(sizes, 1).setUsage(
+            THREE.DynamicDrawUsage
+          )
+        );
+        // VIDEO TEXTURE
+        const video = document.createElement("video");
+        video.src = "Max_No_Audio.mp4";
+        video.loop = true;
+        video.muted = true;
+
+        // Important: Add event listeners to handle video loading and playback
+        video.addEventListener("loadeddata", () => {
+          console.log("%s Video Loaded", video.src);
+          video.play();
+        });
+
+        video.addEventListener("error", (error) => {
+          console.error("Error loading video:", error);
+        });
+
+        const vidTexture = new THREE.VideoTexture(video);
+
+        uniforms = {
+          millis: Date.now() * 0.0001,
+          pointTexture: {
+            value: vidTexture,
+          },
+        };
+        const material = new THREE.ShaderMaterial({
+          uniforms: uniforms,
+          vertexShader: document.getElementById("vertexShader").textContent,
+          fragmentShader: document.getElementById("fragmentShader").textContent,
+          blending: THREE.AdditiveBlending,
+          depthTest: false,
+          transparent: false,
+          vertexColors: true,
+        });
+
+        const object = new THREE.Points(geometry, material);
+        scene.add(object);
+        // animate();
+        renderer = new THREE.WebGLRenderer();
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setAnimationLoop(animate);
+        document.body.appendChild(renderer.domElement);
+
+        const controls = new OrbitControls(camera, renderer.domElement); // create new Orbit Controls object
+        controls.target.set(0, 0, 0);
+        controls.object.position.set(0, 0, 100);
+        controls.update();
+
+        renderer.setAnimationLoop(animate);
+      }
+
+      // ANIMATION LOOP
+      function animate() {
+        requestAnimationFrame(animate);
+        // const time = Date.now() * 0.0005;
+        // const sizes = geometry.attributes.size.array;
+
+        // for (let i = 0; i < 3; i++) {
+        //   sizes[i] = 10 * (1 + Math.sin(0.1 * i + time));
+        // }
+
+        // geometry.attributes.size.needsUpdate = true;
+        renderer.render(scene, camera);
+      }
+      // requestAnimationFrame(animate);
+    </script>
+  </body>
+</html>
