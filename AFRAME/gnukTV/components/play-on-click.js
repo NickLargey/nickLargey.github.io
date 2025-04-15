@@ -2,13 +2,22 @@
 AFRAME.registerComponent("play-on-click", {
   init: function () {
     this.vidPlaying = false;
-    this.onClick = this.onClick.bind(this);
+    // this.onClick = this.onClick.bind(this);
   },
   play: function () {
-    window.addEventListener("click", this.onClick);
+    window.addEventListener("keydown", (event) => {
+      if (event.key === " " || event.code === "Space") {
+        console.log("Space key pressed!");
+        this.onClick();
+      }
+    });
   },
   pause: function () {
-    window.removeEventListener("click", this.onClick);
+    window.removeEventListener("keydown", (event) => {
+      if (event.key === " " || event.code === "Space") {
+        this.onClick;
+      }
+    });
   },
   onClick: function (evt) {
     var videoEl = this.el.getAttribute("material").src;
