@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="http://localhost:8080/dist/aframe-master.js"></script>
+</head>
+<body>
+<script>
+(function () {
+/* Generate attribute tables for primitive documentation. */
+var geometries = AFRAME.geometries;
+var geometryNames = Object.keys(geometries).sort();
+var meshMappings = AFRAME.primitives.getMeshMixin().mappings;
+
+geometryNames.forEach(function (geometryName) {
+  // Create mesh primitive header.
+  console.log('a-' + unCamelCase(geometryName));
+
+  var str = [];
+  str.push('## Attributes\n');
+  
+  // Header
+  var rows = {};
+  rows[0] = ['Attribute', 'Component Mapping', 'Default Value'];
+  rows[1] = ['--------', '-----------------', '-------------'];
+
+  // Compile mesh mixin mappings.
+  Object.keys(meshMappings).forEach(function addMapping (attribute) {
+    var mapping = meshMappings[attribute];
+    var property = mapping.split('.')[1];
+    var materialProp = AFRAME.components.material.schema[property] ||
+                       AFRAME.shaders.standard.schema[property];
+    rows[attribute] = [
+      attribute,
+      mapping,
+      (materialProp.default === undefined || materialProp.default === null ||
+       materialProp.default === '') ?
+        'None' : materialProp.stringify(materialProp.default)
+    ];
+  });
+
+  // Compile geometry mappings.
+  var geometry = geometries[geometryName];
+  Object.keys(geometry.schema).forEach(function addMapping (property) {
+    rows[unCamelCase(property)] = [
+      unCamelCase(property),
+      'geometry.' + property,
+      geometry.schema[property].stringify(geometry.schema[property].default)
+    ];
+  });
+  
+  // Measure required length for each column
+  var cols = [0, 0, 0];
+  Object.values(rows).forEach(function (row) {
+    for(var i = 0; i < cols.length; i++) {
+      cols[i] = Math.max(cols[i], row[i].length);
+    }
+  });
+
+  // Append rows.
+  Object.keys(rows).sort().forEach(function (attribute) {
+    str.push('| ' + rows[attribute].map((v, i) => v.padEnd(cols[i], ' ')).join(' | ') + ' |');
+  });
+
+  console.log(str.join('\n'));
+});
+
+function unCamelCase (str) {
+  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+}
+})();
+</script>
+</body>
+</html>

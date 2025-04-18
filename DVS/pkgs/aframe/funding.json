@@ -1,0 +1,70 @@
+{
+  "version": "v1.0.0",
+  "entity": {
+    "type": "individual",
+    "role": "maintainer",
+    "name": "A-Frame",
+    "email": "diego@supermedium.com",
+    "phone": "",
+    "description": "A web framework for building browsed based 3D, VR and AR experiences.",
+    "webpageUrl": {
+      "url": "https://github.com/aframevr/aframe"
+    }
+  },
+  "projects": [
+    {
+      "guid": "a-frame",
+      "name": "A-Frame",
+      "description": "A web framework for building browsed based 3D, VR and AR experiences",
+      "webpageUrl": {
+        "url": "https://github.com/aframevr/aframe"
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/aframevr/aframe"
+      },
+      "licenses": [
+        "MIT"
+      ],
+      "tags": [
+        "virtualreality",
+        "gamedev",
+        "augmentedreality",
+        "creativecoding",
+        "html",
+        "webxr"
+      ]
+    }
+  ],
+  "funding": {
+    "channels": [
+      {
+        "guid": "dmarcos",
+        "type": "payment-provider",
+        "address": "",
+        "description": "Github Sponsorships"
+      }
+    ],
+    "plans": [
+      {
+        "guid": "dmarcos",
+        "status": "active",
+        "name": "Community contributions",
+        "description": "",
+        "amount": 0,
+        "currency": "USD",
+        "frequency": "monthly",
+        "channels": []
+      }
+    ],
+    "history": [
+      {
+        "year": 2024,
+        "income": 0,
+        "expenses": 0,
+        "taxes": 0,
+        "currency": "USD",
+        "description": "Github Sponsorhips"
+      }
+    ]
+  }
+}
