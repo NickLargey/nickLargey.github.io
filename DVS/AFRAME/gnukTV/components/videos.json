@@ -1,0 +1,59 @@
+  [
+    {
+      "id": "men-who-make",
+      "title": "Devo: The Men Who Make The Music",
+      "vidsrc": "./assets/videos/Devo - The Men Who Make The Music (1979).mp4",
+      "img": "./assets/videos/thumbs/We're_All_DEVO_thumb.jpg"
+    },
+    {
+      "id": "max",
+      "title": "The Max Headroom Event",
+      "vidsrc": "./assets/videos/MH_loop.mp4",
+      "img": "./assets/videos/thumbs/max.png"
+    },
+    {
+      "title": "Devo: The Complete Truth About De-Evolution",
+      "vidsrc": "./assets/videos/Devo - The Complete Truth About De-Evolution.mp4",
+      "img": "./assets/videos/thumbs/Devo - The Complete Truth About De-Evolution.jpg"
+    },
+    {
+      "title": "Aerosol Art Bombing: Tags in Milano",
+      "vidsrc": "./assets/videos/Aerosol_art_bombing_tags_a_Milano_1989-1991-3Zvsrryk-gk.mp4",
+      "img": "./assets/videos/thumbs/Aerosol_art_bombing_thumb.jpg"
+    },
+    {
+      "title": "Devo: Live in '79",
+      "vidsrc": "./assets/videos/Devo-1979.mp4",
+      "img": "./assets/videos/thumbs/Devo_In_80_Thumb.jpg"
+    },
+    {
+      "title": "Devo: Live in '88",
+      "vidsrc": "./assets/videos/DevoChocago88.mp4",
+      "img": ""
+    },
+    {
+      "title": "Robots Don't Exist",
+      "vidsrc": "./assets/videos/robotsdontexisthuge_512kb.mp4",
+      "img": "./assets/videos/thumbs/robotsdontexist.jpg"
+    },
+    {
+      "title": "We're All Devo",
+      "vidsrc": "./assets/videos/We're All Devo (1983).mp4",
+      "img": "./assets/videos/thumbs/We're All Devo (1983)_thumb.jpg"
+    },
+    {
+      "title": "MTV Guest VJ: Dan Aykroyd May 27, 1983.mp4",
+      "vidsrc": "./assets/videos/MTV_Guest_VJ_Hour_with_Dan_Aykroyd_May_27th_1983.mp4",
+      "img": "./assets/videos/thumbs/Dan_Akyroyd_VJ.jpg"
+    },
+    {
+      "title": "The Information Machine",
+      "vidsrc": "./assets/videos/The_Information_Machine_1958.mp4",
+      "img": "./assets/videos/thumbs/Information_Machine_Thumb.jpg"
+    },
+    {
+      "title": "Smalltalk: Nexus Demo '07",
+      "vidsrc": "./assets/videos/nexus_demo_2007.mp4",
+      "img": "./assets/videos/thumbs/nexus_demo_thumb.jpg"
+    }
+  ]

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ヽ༼ ຈل͜ຈ༼ ▀̿̿Ĺ̯̿̿▀̿ ̿༽Ɵ͆ل͜Ɵ͆ ༽ﾉ</title>
+    <script src="./pkgs/aframe.min.js"></script>
+    <script src="./pkgs/aframe-extras/dist/aframe-extras.min.js"></script>
+    <script src="./components/open-link.js" type="module"></script>
+    <script src="https://unpkg.com/aframe-text-geometry-component@0.5.2/dist/aframe-text-geometry-component.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="./base.css" />
+  </head>
+  <body>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "../three.js/build/three.module.js",
+          "three/addons/": "../three.js/examples/jsm/"
+        }
+      }
+    </script>
+
+    <a-scene
+      stats
+      physics
+      background="color: black"
+      fog="type: exponential; color: #FE00D4; density: .015"
+      loading-screen="dotsColor: #ff00b4; backgroundColor: black; enabled: true"
+      renderer="antialias: auto;
+                   colorManagement: true;
+                   sortTransparentObjects: true;
+                   maxCanvasWidth: 3840;
+                   maxCanvasHeight: 2160;"
+    >
+      <!-- LIGHTS -->
+      <a-light type="ambient" color="#fff"></a-light>
+      <a-light type="point" color="#00C3FD" position="-30 42 -25"></a-light>
+      <a-light type="point" color="#0abdc6" position="-35 42 -25"></a-light>
+      <a-light
+        type="point"
+        color="white"
+        position="-25 42 -25"
+        angle="60 0 15"
+      ></a-light>
+
+      <a-text
+        value="G N U K . L O L"
+        font="dejavu"
+        width="150"
+        position="-27 40 -30"
+      ></a-text>
+
+      <a-text
+        value="Welcome... Please take a look around..."
+        font="dejavu"
+        width="100"
+        position="-35 32 -30"
+      ></a-text>
+      <a-text
+        value="Use the WASD keys to move and look around by moving your mouse while holding the left-click button"
+        font="dejavu"
+        width="75"
+        position="-35 22 -30"
+      ></a-text>
+
+      <!-- GROUND -->
+      <a-cylinder
+        id="floor"
+        radius="150"
+        height="0.1"
+        position="0 -2 0"
+        material="shader: flat; color: black"
+        static-body
+      >
+        <!-- LINKS -->
+        <a-entity
+          text-geometry="value: Loading an Image...; size:1; bevelEnabled: false; bevelThickness: 5; curveSegments: 15 "
+          position="20 6 -18"
+          open-link="link: ./src/images/image-render.html"
+        ></a-entity>
+
+        <a-entity
+          text-geometry="value: Loading an Video...;  size: 1; bevelEnabled: false; bevelThickness: 5; curveSegments: 20 "
+          geometry="primitive:plane"
+          position="36 10 -10"
+          open-link="link: ./src/video/video-render.html"
+        ></a-entity>
+
+        <a-entity
+          text-geometry="value: Loading an 3D Model...;  size: 1; bevelEnabled: false; bevelThickness: 5; curveSegments: 19 "
+          geometry="primitive:plane"
+          position="-15 9 -19"
+          open-link="link: ./src/basics/model-render.html"
+        ></a-entity>
+
+        <a-entity
+          text-geometry="value: Gnuk.TV...; size: 1; bevelEnabled: false; bevelThickness: 3; curveSegments: 12 "
+          geometry="primitive:plane"
+          position="3 4 -15"
+          open-link="link: ./AFRAME/gnukTV/TV.html"
+        ></a-entity>
+
+        <a-entity
+          text-geometry="value: Video Rendering with Custom Shaders...; size: 1; bevelEnabled: false; bevelThickness: 5; curveSegments: 12 "
+          geometry="primitive:plane"
+          position="-45 5 -11"
+          open-link="link: ./GLSL/practice/index.html"
+        ></a-entity>
+      </a-cylinder>
+
+      <!-- CAMERA -->
+      <a-entity id="rig" position="10 0 35">
+        <a-camera look-controls wasd-controls>
+          <a-cursor id="cursor" color="#0abdc6"></a-cursor>
+        </a-camera>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>

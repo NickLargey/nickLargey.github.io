@@ -1,0 +1,11 @@
+Model Information:
+* title:	Sony PVM-14L2 CRT TV
+* source:	https://sketchfab.com/3d-models/sony-pvm-14l2-crt-tv-ab19c2419c2647299ce96d027b3e7f5e
+* author:	Poring (https://sketchfab.com/poring)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Sony PVM-14L2 CRT TV" (https://sketchfab.com/3d-models/sony-pvm-14l2-crt-tv-ab19c2419c2647299ce96d027b3e7f5e) by Poring (https://sketchfab.com/poring) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

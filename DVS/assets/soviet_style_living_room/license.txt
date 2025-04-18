@@ -1,0 +1,11 @@
+Model Information:
+* title:	Soviet style living room
+* source:	https://sketchfab.com/3d-models/soviet-style-living-room-1992e10291674bb29c15229013163e4a
+* author:	AlexVet (https://sketchfab.com/xalex007xbkru)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Soviet style living room" (https://sketchfab.com/3d-models/soviet-style-living-room-1992e10291674bb29c15229013163e4a) by AlexVet (https://sketchfab.com/xalex007xbkru) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ヽ༼ ຈل͜ຈ༼ ▀̿̿Ĺ̯̿̿▀̿ ̿༽Ɵ͆ل͜Ɵ͆ ༽ﾉ</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="../../base.css" />
+  </head>
+  <body>
+    <script type="x-shader/x-vertex" id="vertexShader">
+      attribute float size;
+      varying vec3 vColor;
+      varying vec3 pos;
+      void main() {
+        pos = position;
+      	vColor = color;
+      	vec4 mvPosition = modelViewMatrix * vec4( pos.x, pos.y, pos.z, 1.0 );
+      	gl_PointSize = size * ( 300.0 / -mvPosition.z );
+      	gl_Position = projectionMatrix * mvPosition;
+      }
+    </script>
+
+    <script type="x-shader/x-fragment" id="fragmentShader">
+      precision mediump float; // set precision to float
+
+      varying vec2 pos; // get xy position from vertex shader
+
+      // 1D GRADIENT
+      main() {
+        vec4 c1 = vec4(0.5, 0.1, 0.9, 1.);
+        vec4 c2 = vec4(0.1, 0.8, 0.7, 1.);
+        vec4 c = mix(c1, c2, pos.x);
+
+        gl_fragColor = c;
+      }
+    </script>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "../../../three.js/build/three.module.js",
+          "three/addons/": "../../../three.js/examples/jsm/"
+        }
+      }
+    </script>
+    <!-- <form id="modelRadio">
+      <label for="whale">Blue Whale</label>
+      <input
+        type="radio"
+        type="text"
+        id="whale"
+        name="whale"
+        value="0"
+        defaultChecked
+      /><br />
+      <label for="manta">Manta Ray</label>
+      <input type="radio" id="manta" name="manta" value="1" /><br />
+      <label for="reaper">Phantom Reaper</label>
+      <input type="radio" id="reaper" name="reaper" value="2" />
+    </form> -->
+    <!-- Using a joystick -->
+    <!-- <script src="./src/gamepad.js" type="module"></script> -->
+
+    <!--loading and manipulating shaders for gltf 3d models -->
+    <script src="./model3d.js" type="module"></script>
+  </body>
+</html>

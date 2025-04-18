@@ -1,0 +1,39 @@
+<section class="recast-plugin-panel">
+  <header class="panel-header">Plugin: NavMesh Builder</header>
+  <form class="panel-content">
+    {{#each RecastConfig}}
+    <label class="panel-field" title="{{ description }}">
+      <span class="panel-field-label">
+        {{ name }}:
+        <span data-bind="{{ name }}"></span>
+      </span>
+      <input type="number"
+             min="{{ min }}"
+             max="{{ max }}"
+             step="{{ step }}"
+             name="{{ name }}"
+             value="{{ default }}"
+             required>
+    </label>
+    {{/each}}
+    <label class="panel-field">
+      <span class="panel-field-label">
+        selector:
+      </span>
+      <input type="text" name="selector" value="" placeholder="*">
+    </label>
+  </form>
+  <div class="panel-btn-wrap">
+    <button name="build" class="panel-btn" title="Rebuild navigation mesh.">Build</button>
+    <button name="export" class="panel-btn" title="Export navigation mesh to `.gltf` file.">Export</button>
+  </div>
+  <div class="recast-spinner">
+    <!-- http://tobiasahlin.com/spinkit/ -->
+    <div class="sk-folding-cube">
+      <div class="sk-cube1 sk-cube"></div>
+      <div class="sk-cube2 sk-cube"></div>
+      <div class="sk-cube4 sk-cube"></div>
+      <div class="sk-cube3 sk-cube"></div>
+    </div>
+  </div>
+</section>

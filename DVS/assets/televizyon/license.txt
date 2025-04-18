@@ -1,0 +1,11 @@
+Model Information:
+* title:	CRT TV - (Tüplü Televizyon)
+* source:	https://sketchfab.com/3d-models/crt-tv-tuplu-televizyon-8bf4d269d1fe4d68b6d58e8831897a94
+* author:	oddviz (https://sketchfab.com/oddviz)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "CRT TV - (Tüplü Televizyon)" (https://sketchfab.com/3d-models/crt-tv-tuplu-televizyon-8bf4d269d1fe4d68b6d58e8831897a94) by oddviz (https://sketchfab.com/oddviz) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

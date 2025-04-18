@@ -1,0 +1,11 @@
+Model Information:
+* title:	Phantom Reaper - fish
+* source:	https://sketchfab.com/3d-models/phantom-reaper-fish-d861ba9f4fd24bb7bc90ab979baa5b83
+* author:	Brian Trepanier (https://sketchfab.com/CMBC)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Phantom Reaper - fish" (https://sketchfab.com/3d-models/phantom-reaper-fish-d861ba9f4fd24bb7bc90ab979baa5b83) by Brian Trepanier (https://sketchfab.com/CMBC) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
